@@ -8,8 +8,13 @@
 
 <label for="sessionId">Session Id</label>
 <input id="sessionId" type="password" />
+<br>
 <label for="accountId">Account Id</label>
 <input id="accountId" type="text" />
+<br>
+<label for="recommendationStrategyFlowApiName">Recommendation Strategy Flow API Name</label>
+<input id="recommendationStrategyFlowApiName" type="text" value="Accept_or_Reject_Recommendation_LOC" />
+<br>
 <input id="runLightningOut" type="button" value="Run Lightning Out" />
 <div id="lightningout"></div>
 
@@ -17,6 +22,7 @@
 <script>
     const sessionId = document.getElementById("sessionId");
     const accountId = document.getElementById("accountId");
+    const recommendationStrategyFlowApiName = document.getElementById("recommendationStrategyFlowApiName");
     const runButton = document.getElementById("runLightningOut");
 
     runButton.addEventListener('click', getLightningOut);
@@ -31,7 +37,8 @@
                     'c:nextBestActionLightningOut', // top-level component of your app
                     {
                         'recordId': accountId.value,
-                        'recommendationStrategyFlowApiName': 'Account_Recommendation_Strategy'
+                        'recommendationStrategyFlowApiName': recommendationStrategyFlowApiName.value,
+                        'displayType': 'inline'
                     }, // attributes to set on the component when created
                     'lightningout', // the DOM location to insert the component
                     function (cmp) {
