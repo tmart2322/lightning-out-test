@@ -6,18 +6,23 @@
 </head>
 <body>
 
+<label for="sessionId">Session Id</label>
 <input id="sessionId" type="password" />
+<label for="accountId">Account Id</label>
+<input id="accountId" type="text" />
 <input id="runLightningOut" type="button" value="Run Lightning Out" />
 <div id="lightningout"></div>
 
 <script src="https://fcsamerica--twilio.sandbox.lightning.force.com/lightning/lightning.out.js"></script>
 <script>
     const sessionId = document.getElementById("sessionId");
+    const accountId = document.getElementById("accountId");
     const runButton = document.getElementById("runLightningOut");
 
     runButton.addEventListener('click', getLightningOut);
 
     function getLightningOut() {
+        document.getElementById("lightningout").innerHTML = "";
         $Lightning.use(
             'c:nextBestActionDependencyApp', // name of the Lightning app
             function () {
@@ -25,7 +30,7 @@
                 $Lightning.createComponent(
                     'c:nextBestActionLightningOut', // top-level component of your app
                     {
-                        'recordId': '0015400000kfqIiAAI',
+                        'recordId': accountId,
                         'recommendationStrategyFlowApiName': 'Account_Recommendation_Strategy'
                     }, // attributes to set on the component when created
                     'lightningout', // the DOM location to insert the component
